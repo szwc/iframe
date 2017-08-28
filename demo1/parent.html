@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>parent</title>
+	<style>
+		body {
+			background-color: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<h1>这是父页面</h1>
+	
+	<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe">官方参考文档</a></p><br>
+	<p>点击这个链接 内容会展示到iframe(iframe的name a标签的target)</p>
+	<p><a href="property.html" target="haha">测试name属性</a></p><br>
+	<!-- 这是最简单的iframe嵌套 -->
+	<!-- <iframe src="child.html"></iframe> -->
+	
+	
+	
+	<!-- frameborder  规定是否显示框架周围的边框 两个值  1显示 0不显示 -->
+	<!-- <iframe src="child.html" frameborder="1"></iframe> -->
+	
+	<!-- height  -->
+	<iframe src="child.html" frameborder="1" height="500px" width="800px" marginheight="50px" marginwidth="50px" longdesc="i dont know " scrolling="no" allowfullscreen="true" name="haha" seamless="seamless"></iframe>
+	<hr>
+
+	<div><button>设置全屏</button></div>
+</body>
+<script>
+	
+	var iframe = document.getElementsByTagName('iframe')[0];
+	var btn = document.getElementsByTagName('button')[0];
+	iframe.onload = function () {
+		btn.onclick = function () {
+			iframe.webkitRequestFullScreen();
+		}
+	}
+</script>
+</html>
