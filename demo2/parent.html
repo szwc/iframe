@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>parent</title>
+</head>
+<body>
+	<h1>这是父页面</h1>
+	<iframe src="child.html" frameborder="1" height="500px" width="500px"></iframe>
+	<br>
+	<br>
+	<iframe src="http://127.0.0.1:3000/index.html" frameborder="0" style="height:300px;width:300px;background-color:skyblue"></iframe>
+	<script>
+		// window.name ="father";
+		// var iframe = document.getElementsByTagName('iframe')[0];
+		// iframe.onload = function (){
+		// 	console.log(iframe.contentWindow.document.title);
+		// 	console.log("parent window.name: "+window.name)
+		// }
+
+
+
+
+		//window.name 跨域
+		// var iframe = document.getElementsByTagName('iframe')[0];
+		// iframe.onload = function (){
+		// 	var thrwin = iframe.contentWindow;
+		// 	try{
+		// 		var data = thrwin.name;
+		// 		console.log(data);
+		// 	}catch(e){
+		// 		iframe.src="child.html";
+		// 		console.log(data);
+		// 	}
+		// }
+
+
+		//window.postMessage 跨域
+		var iframe = document.getElementsByTagName('iframe')[1];
+		var data;
+		function onLoad(){			
+			var win = iframe.contentWindow;
+			data = {a:'app',b:'bed',c:'cat'};
+			data = JSON.stringify(data);
+			
+			win.postMessage(data,'http://127.0.0.1:3000');
+
+
+		};
+		iframe.onload = onLoad;
+
+		window.onmessage = function (e) {
+			console.log(e.data);
+		}
+	</script>
+</body>
+</html>
