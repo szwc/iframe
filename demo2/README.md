@@ -15,21 +15,11 @@
 原理：同一个窗口，只要窗口不关闭，window.name也不会变
 
 实现：例如：80端口下 a.html想获取到 3000端口下data.html的数据，可通过iframe加载 data.html,待iframe加载完后，将iframe的src指向同a同域的b.html，即可获得3000端口 data.html的window.name值
+
 a页面代码
-`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>parent</title>
-</head>
-<body>
-	<h1>这是父页面</h1>
-	<br>
-	<br>
-	<iframe src="http://127.0.0.1:3000/data.html" frameborder="0" style="height:300px;width:300px;background-color:skyblue"></iframe>
-	<script>
-		
+
+`<iframe src="http://127.0.0.1:3000/data.html" frameborder="0" style="height:300px;width:300px;background-color:skyblue"></iframe>
+	<script>		
 		//window.name 跨域
 		var iframe = document.getElementsByTagName('iframe')[0];
 		iframe.onload = function (){
@@ -41,28 +31,13 @@ a页面代码
 				iframe.src="b.html";
 				console.log(data);
 			}
-		}
+		}		
+	</script>
+`
 
-		
-	</script>
-</body>
-</html>
-`
 b页面代码
-`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>form</title>
-</head>
-<body>
-	<script>
-		window.name="3000 端口的window.name";
-	</script>
-</body>
-</html>
-`
+
+`		window.name="3000 端口的window.name";`
 
 ## window.postMessage 跨域
 
